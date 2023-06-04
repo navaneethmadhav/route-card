@@ -1,0 +1,32 @@
+.data-div{
+    background-color: white;
+    color: black;
+    /* height: 50px; */
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.head-div{
+    background: linear-gradient(yellow 5%,red);
+    color: white;
+    /* height: 50px; */
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.link-btn{
+    position: absolute;
+    top: 50px;
+    left: 200px;
+}
+
+.form-btn{
+    background: linear-gradient(goldenrod,lightseagreen);
+}
+
+.delete-btn{
+    background-color: white;
+    border: none;
+}
