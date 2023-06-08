@@ -11,3 +11,8 @@
 .history-btn{
     background: linear-gradient(goldenrod,lightseagreen);
 }
+
+.add-btn{
+    background: linear-gradient(green,darkorange);
+    
+}

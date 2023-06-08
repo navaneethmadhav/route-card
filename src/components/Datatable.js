@@ -53,8 +53,9 @@ const Datatable = () => {
         </Row>
       </div>
       {
-        allProducts?.map((item) => (
-          <div className='container mb-4 border-2 w-75 p-4 data-div'>
+        allProducts && allProducts.length>0 ?
+        allProducts.map((item) => (
+          <div key={item.id} className='container mb-4 border-2 w-75 p-4 data-div'>
             <Row>
               <Col>
                 {item.product_name}
@@ -63,14 +64,21 @@ const Datatable = () => {
                 {item.model_no}
               </Col>
               <Col className='text-end'>
-                <FiEdit className='me-5' />
-                <button onClick={(e)=>handleDelete(item.id)} className='delete-btn'>
+
+                <Link to={'/edit/'+item.id}>
+                  <button className='option-btn'><FiEdit className='me-5 text-dark' /></button>
+                </Link>
+                
+                <button onClick={(e)=>handleDelete(item.id)} className='option-btn'>
                   <FaTrashAlt className='ms-5 me-5 text-danger' />
                 </button>
               </Col>
             </Row>
           </div>
         ))
+        : <div className='text-center'>
+            <h5>"No data Available"</h5>
+          </div>
       }
     </div>
   )

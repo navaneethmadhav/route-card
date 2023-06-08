@@ -1,0 +1,16 @@
+.form{
+    background-color: goldenrod;
+    color: black;
+}
+
+.edit-btn{
+    background: linear-gradient(saddlebrown,darkblue);
+}
+
+.sub-heading{
+    color: midnightblue;
+}
+
+.close-btn{
+    background: linear-gradient(black,grey);
+}
