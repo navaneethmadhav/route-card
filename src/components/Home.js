@@ -11,6 +11,8 @@ import uuid from 'react-uuid';
 import axios from 'axios';
 import NameDropdown from './NameDropdown';
 import ModelDropdown from './ModelDropdown';
+import QRScanner from './QRScanner';
+import { AiOutlineScan } from "react-icons/ai";
 
 const Home = () => {
 
@@ -55,6 +57,9 @@ const Home = () => {
   const [ptRemark, setPtRemark] = useState('')
   const [assembly, setAssembly] = useState('')
 
+  const [isScannerOpen, setIsScannerOpen] = useState(false)
+  const [currentField, setCurrentField] = useState('')
+
 
   // for storing data from multiple input values to one state
   const handleChange1 = (e) => {
@@ -82,17 +87,141 @@ const Home = () => {
     setPinion({ ...pinion, [e.target.name]: e.target.value })
   }
 
-  const handleChangeDt = (e) =>{
+  const handleChangeDt = (e) => {
     setPtDate({ ...ptDate, [e.target.name]: e.target.value })
   }
 
-  const handleNameDropdownChange = (option) =>{
+  // for name and model dropdown
+  const handleNameDropdownChange = (option) => {
     setName(option)
   }
 
-  const handleModelDropdownChange = (option) =>{
+  const handleModelDropdownChange = (option) => {
     setModel(option)
   }
+
+  // scanning
+
+  // ============  casing set no  =================
+
+  const handleQRScan1 = (scannedText) => {
+    setCasing((casingSet) => ({
+      ...casingSet,
+      [currentField]: scannedText,
+    }))
+    setIsScannerOpen(false)
+  }
+
+  const handleButtonClick1 = (drgno) => {
+    setCurrentField(drgno)
+    setIsScannerOpen(true)
+  }
+
+  const handleButtonClick2 = (srno) => {
+    setCurrentField(srno)
+    setIsScannerOpen(true)
+  }
+
+  // =====================  main casing no  =================================
+
+  const handleQRScan2 = (scannedText) => {
+    setMainCasing((mainCasing) => ({
+      ...mainCasing,
+      [currentField]: scannedText,
+    }))
+    setIsScannerOpen(false)
+  }
+
+  const handleMainCasingButtonClick1 = (drgno2) => {
+    setCurrentField(drgno2)
+    setIsScannerOpen(true)
+  }
+
+  const handleMainCasingButtonClick2 = (srno2) => {
+    setCurrentField(srno2)
+    setIsScannerOpen(true)
+  }
+
+  // ================  Delivery Casing no  ===============
+
+  const handleQRScan3 = (scannedText) => {
+    setDeliveryCasing((deliveryCasing) => ({
+      ...deliveryCasing,
+      [currentField]: scannedText,
+    }))
+    setIsScannerOpen(false)
+  }
+
+  const handleDeliveryCasingButtonClick1 = (drgno3) => {
+    setCurrentField(drgno3)
+    setIsScannerOpen(true)
+  }
+
+  const handleDeliveryCasingButtonClick2 = (srno3) => {
+    setCurrentField(srno3)
+    setIsScannerOpen(true)
+  }
+
+  // ================  Rotor Pair no  ===============
+
+  const handleQRScan4 = (scannedText) => {
+    setRotorPair((rotorPair) => ({
+      ...rotorPair,
+      [currentField]: scannedText,
+    }))
+    setIsScannerOpen(false)
+  }
+
+  const handleRotorPairButtonClick1 = (drgno4) => {
+    setCurrentField(drgno4)
+    setIsScannerOpen(true)
+  }
+
+  const handleRotorPairButtonClick2 = (srno4) => {
+    setCurrentField(srno4)
+    setIsScannerOpen(true)
+  }
+
+  // ================  Gear no  ===============
+
+  const handleQRScan5 = (scannedText) => {
+    setGear((gear) => ({
+      ...gear,
+      [currentField]: scannedText,
+    }))
+    setIsScannerOpen(false)
+  }
+
+  const handleGearButtonClick1 = (drgno5) => {
+    setCurrentField(drgno5)
+    setIsScannerOpen(true)
+  }
+
+  const handleGearButtonClick2 = (srno5) => {
+    setCurrentField(srno5)
+    setIsScannerOpen(true)
+  }
+
+  // ================  Pinion no  ===============
+
+  const handleQRScan6 = (scannedText) => {
+    setPinion((pinion) => ({
+      ...pinion,
+      [currentField]: scannedText,
+    }))
+    setIsScannerOpen(false)
+  }
+
+  const handlePinionButtonClick1 = (drgno6) => {
+    setCurrentField(drgno6)
+    setIsScannerOpen(true)
+  }
+
+  const handlePinionButtonClick2 = (srno6) => {
+    setCurrentField(srno6)
+    setIsScannerOpen(true)
+  }
+
 
   let location = useNavigate()
 
@@ -151,7 +280,7 @@ const Home = () => {
 
       <h1 className='text-center m-5'>Route Card</h1>
       <Row className='d-flex justify-content-center'>
-        <Col md={6}>
+        <Col md={7}>
           <Form className='border border-3 p-5 rounded'>
 
             <NameDropdown onNameDropdownChange={handleNameDropdownChange} />
@@ -187,17 +316,25 @@ const Home = () => {
             <Form.Group className="mb-3">
               <Form.Label>Casing Set No.</Form.Label>
               <Row>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter Drg No."
                     value={casingSet.drgno} name='drgno' id='drgno'
-                    onChange={handleChange1} required className='pn rounded-pill w-100'
+                    onChange={handleChange1} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleButtonClick1('drgno')}><AiOutlineScan /></button>
+
+
                 </Col>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter SR No."
                     value={casingSet.srno} name='srno' id='srno'
-                    onChange={handleChange1} required className='pn rounded-pill w-100'
+                    onChange={handleChange1} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleButtonClick2('srno')}><AiOutlineScan /></button>
+                  {isScannerOpen && <QRScanner onScan={handleQRScan1} />}
+
                 </Col>
               </Row>
             </Form.Group>
@@ -205,17 +342,25 @@ const Home = () => {
             <Form.Group className="mb-3">
               <Form.Label>Main Casing No.</Form.Label>
               <Row>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter DRG No."
                     value={mainCasing.drgno2} name='drgno2' id='drgno2'
-                    onChange={handleChange2} required className='pn rounded-pill w-100'
+                    onChange={handleChange2} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleMainCasingButtonClick1('drgno2')}><AiOutlineScan /></button>
+
+
                 </Col>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter SR No."
                     value={mainCasing.srno2} name='srno2' id='srno2'
-                    onChange={handleChange2} required className='pn rounded-pill w-100'
+                    onChange={handleChange2} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleMainCasingButtonClick2('srno2')}><AiOutlineScan /></button>
+                  {isScannerOpen && <QRScanner onScan={handleQRScan2} />}
+
                 </Col>
               </Row>
             </Form.Group>
@@ -223,17 +368,24 @@ const Home = () => {
             <Form.Group className="mb-3">
               <Form.Label>Delivery Casing No.</Form.Label>
               <Row>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter DRG No."
                     value={deliveryCasing.drgno3} name='drgno3' id='drgno3'
-                    onChange={handleChange3} required className='pn rounded-pill w-100'
+                    onChange={handleChange3} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleDeliveryCasingButtonClick1('drgno3')}><AiOutlineScan /></button>
+
                 </Col>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter SR No."
                     value={deliveryCasing.srno3} name='srno3' id='srno3'
-                    onChange={handleChange3} required className='pn rounded-pill w-100'
+                    onChange={handleChange3} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleDeliveryCasingButtonClick2('srno3')}><AiOutlineScan /></button>
+                  {isScannerOpen && <QRScanner onScan={handleQRScan3} />}
+
                 </Col>
               </Row>
             </Form.Group>
@@ -241,17 +393,24 @@ const Home = () => {
             <Form.Group className="mb-3">
               <Form.Label>Rotor Pair No.</Form.Label>
               <Row>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter DRG No."
                     value={rotorPair.drgno4} name='drgno4' id='drgno4'
-                    onChange={handleChange4} required className='pn rounded-pill w-100'
+                    onChange={handleChange4} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleRotorPairButtonClick1('drgno4')}><AiOutlineScan /></button>
+
                 </Col>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter SR No."
                     value={rotorPair.srno4} name='srno4' id='srno4'
-                    onChange={handleChange4} required className='pn rounded-pill w-100'
+                    onChange={handleChange4} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleRotorPairButtonClick2('srno4')}><AiOutlineScan /></button>
+                  {isScannerOpen && <QRScanner onScan={handleQRScan4} />}
+
                 </Col>
               </Row>
             </Form.Group>
@@ -259,17 +418,24 @@ const Home = () => {
             <Form.Group className="mb-3">
               <Form.Label>Gear No.</Form.Label>
               <Row>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter DRG No."
                     value={gear.drgno5} name='drgno5' id='drgno5'
-                    onChange={handleChange5} required className='pn rounded-pill w-100'
+                    onChange={handleChange5} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleGearButtonClick1('drgno5')}><AiOutlineScan /></button>
+
                 </Col>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter SR No."
                     value={gear.srno5} name='srno5' id='srno5'
-                    onChange={handleChange5} required className='pn rounded-pill w-100'
+                    onChange={handleChange5} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleGearButtonClick2('srno5')}><AiOutlineScan /></button>
+                  {isScannerOpen && <QRScanner onScan={handleQRScan5} />}
+
                 </Col>
               </Row>
             </Form.Group>
@@ -277,17 +443,22 @@ const Home = () => {
             <Form.Group className="mb-3">
               <Form.Label>Pinion No.</Form.Label>
               <Row>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter DRG No."
                     value={pinion.drgno6} name='drgno6' id='drgno6'
-                    onChange={handleChange6} required className='pn rounded-pill w-100'
+                    onChange={handleChange6} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handlePinionButtonClick1('drgno6')}><AiOutlineScan /></button>
                 </Col>
-                <Col>
+                <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter SR No."
                     value={pinion.srno6} name='srno6' id='srno6'
-                    onChange={handleChange6} required className='pn rounded-pill w-100'
+                    onChange={handleChange6} required className='pn rounded-pill w-75 me-5'
                   />
+
+                  <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handlePinionButtonClick2('srno6')}><AiOutlineScan /></button>
+                  {isScannerOpen && <QRScanner onScan={handleQRScan6} />}
                 </Col>
               </Row>
             </Form.Group>
@@ -325,7 +496,7 @@ const Home = () => {
               <Row>
                 <Col>
                   <Form.Control type="date" placeholder="Enter Pneumatic testing date"
-                    value={ptDate.date} name='date' id='date' 
+                    value={ptDate.date} name='date' id='date'
                     onChange={handleChangeDt} required className='rounded-pill'
                   />
                 </Col>
