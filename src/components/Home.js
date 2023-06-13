@@ -9,6 +9,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 import uuid from 'react-uuid';
 import axios from 'axios';
+import NameDropdown from './NameDropdown';
+import ModelDropdown from './ModelDropdown';
 
 const Home = () => {
 
@@ -84,6 +86,14 @@ const Home = () => {
     setPtDate({ ...ptDate, [e.target.name]: e.target.value })
   }
 
+  const handleNameDropdownChange = (option) =>{
+    setName(option)
+  }
+
+  const handleModelDropdownChange = (option) =>{
+    setModel(option)
+  }
+
   let location = useNavigate()
 
   useEffect(() => {
@@ -92,6 +102,13 @@ const Home = () => {
 
   const handleAddProduct = async (e) => {
     e.preventDefault()
+
+    const date = new Date()
+    const day = date.getDate()
+    const month = date.toLocaleString('default', { month: 'long' })
+    const year = date.getFullYear().toString()
+
+    const currentDate = `${day}-${month}-${year}`
 
     setId(uuid().slice(0, 4))
 
@@ -114,7 +131,8 @@ const Home = () => {
       ptDate,
       ptBy,
       ptRemark,
-      assembly
+      assembly,
+      currentDate
     }
     console.log(body);
 
@@ -135,37 +153,10 @@ const Home = () => {
       <Row className='d-flex justify-content-center'>
         <Col md={6}>
           <Form className='border border-3 p-5 rounded'>
-            <Form.Group className="mb-3">
-              <h3 className='text-center mb-5'>Add Details</h3>
-              <Form.Label>Product Name</Form.Label>
-              <Form.Select type="text"
-                value={pName}
-                onChange={(e) => setName(e.target.value)} required className='rounded-pill' placeholder='Select Your Product'>
-                <option></option>
-                <option>Fan</option>
-                <option>Bulb</option>
-                <option>Mixy</option>
-                <option>Reciprocating Compressor</option>
-                <option>Screw Compressor</option>
-                <option>Centrifugal Compressor</option>
-              </Form.Select>
-            </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>Model No</Form.Label>
-              <Form.Select type="number"
-                // value={age} 
-                onChange={(e) => setModel(e.target.value)} required className='rounded-pill' >
-                <option></option>
-                <option>75-564</option>
-                <option>89-235</option>
-                <option>23-458</option>
-                <option>48-918</option>
-                <option>78-544</option>
-                <option>51-624</option>
-                <option>12-216</option>
-              </Form.Select>
-            </Form.Group>
+            <NameDropdown onNameDropdownChange={handleNameDropdownChange} />
+
+            <ModelDropdown onModelDropdownChange={handleModelDropdownChange} />
 
             <Form.Group className="mb-3">
               <Form.Label>Air End Sr. No</Form.Label>

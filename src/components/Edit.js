@@ -80,7 +80,7 @@ const Edit = () => {
         setPtRemark(result.data.products.pneumatic_testing_remark);
         setAssembly(result.data.products.assembly_by);
     }
-    console.log(pName);
+    console.log(model);
 
     // for storing data from multiple input values to one state
     const handleChange1 = (e) => {
@@ -115,6 +115,13 @@ const Edit = () => {
     const handleUpdate = async (e) => {
         e.preventDefault()
 
+        const date = new Date()
+        const day = date.getDate()
+        const month = date.toLocaleString('default', { month: 'long' })
+        const year = date.getFullYear().toString()
+
+        const currentDate = `${day}-${month}-${year}`
+
         const body = {
             id,
             pName,
@@ -134,7 +141,8 @@ const Edit = () => {
             ptDate,
             ptBy,
             ptRemark,
-            assembly
+            assembly,
+            currentDate
         }
 
         // api call - post
@@ -146,7 +154,7 @@ const Edit = () => {
 
     useEffect(() => {
         fetchProduct()
-    })
+    },[])
 
     return (
         <div>

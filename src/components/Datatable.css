@@ -1,6 +1,5 @@
 .data-div{
-    background-color: white;
-    color: black;
+    color: ghostwhite;
     /* height: 50px; */
     border-radius: 10px;
     font-weight: 800;
@@ -16,17 +15,28 @@
     font-size: 20px;
 }
 
-.link-btn{
+/* .link-btn{
     position: absolute;
     top: 50px;
     left: 200px;
-}
+} */
 
 .form-btn{
     background: linear-gradient(goldenrod,lightseagreen);
 }
 
-.option-btn{
-    background-color: white;
+.edit{
+    background-color: transparent;
     border: none;
+    color: white;
+}
+
+.delete-btn{
+    background-color: transparent;
+    border: none;
+}
+
+.search-bar{
+    width: 500px;
+    background-color: forestgreen;
 }
