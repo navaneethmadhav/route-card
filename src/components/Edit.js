@@ -447,7 +447,7 @@ const Edit = () => {
                             <Form.Select type="text"
                                 value={pName}
                                 onChange={(e) => setName(e.target.value)} required className='rounded-pill' placeholder='Select Your Product'>
-                                <option></option>
+                                <option selected hidden>Select Product Name</option>
                                 <option>Reciprocating compressor(lubricated&oilfree)</option>
                                 <option>Rotary screw(mobile&stationary)</option>
                                 <option>Rotary Screw comprosser</option>
@@ -463,7 +463,7 @@ const Edit = () => {
                             <Form.Select type="number"
                                 value={model}
                                 onChange={(e) => setModel(e.target.value)} required className='rounded-pill' >
-                                <option></option>
+                                <option selected hidden>Select Model no</option>
                                 <option>75-564</option>
                                 <option>89-235</option>
                                 <option>23-458</option>

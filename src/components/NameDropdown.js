@@ -16,7 +16,7 @@ const NameDropdown = ({onNameDropdownChange}) => {
               <Form.Select type="text"
                 // value={pName}
                 onChange={handleNameDropdownChange} required className='rounded-pill' placeholder='Select Your Product'>
-                <option></option>
+                <option disabled selected hidden>Select Product Name</option>
                 <option>Reciprocating compressor(lubricated&oilfree)</option>
                 <option>Rotary screw(mobile&stationary)</option>
                 <option>Rotary Screw comprosser</option>

@@ -53,7 +53,7 @@ const Datatable = () => {
         <Col className='d-flex justify-content-start h-75'>
             <Form.Select type="number" required className='w-50 me-5 rounded-pill' 
             value={filterMonth} onChange={handleMonthChange}>
-              <option value=''>Filter</option>
+              <option selected hidden>Filter</option>
               <option>Jan</option>
               <option>Feb</option>
               <option>Mar</option>

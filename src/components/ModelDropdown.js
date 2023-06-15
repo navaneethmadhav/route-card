@@ -14,7 +14,7 @@ const ModelDropdown = ({onModelDropdownChange}) => {
                 <Form.Select type="number"
                     // value={age} 
                     onChange={handleModelDropdownChange} required className='rounded-pill' >
-                    <option></option>
+                    <option disabled selected hidden>Select Model no</option>
                     <option>75-564</option>
                     <option>89-235</option>
                     <option>23-458</option>

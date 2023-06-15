@@ -362,12 +362,19 @@ const Home = () => {
 
   return (
     <div>
+      <Row>
+        <Col md={7} className='ms-5'>
+          <h1 className='text-end m-5'>Route Card</h1>
+        </Col>
 
-      <Link to={'/history'} className='btn-link'>
-        <Button className='btn-lg rounded-pill border-1 mb-5 history-btn'>History &nbsp;&nbsp; <BsFillArrowRightCircleFill /></Button>
-      </Link>
+        <Col md={2} className='text-center me-5'>
+          <Link to={'/history'} className='btn-link'>
+            <Button className='btn-lg rounded-pill border-1 mt-5 history-btn'>History &nbsp;&nbsp; <BsFillArrowRightCircleFill /></Button>
+          </Link>
+        </Col>
+        
+      </Row>
 
-      <h1 className='text-center m-5'>Route Card</h1>
       <Row className='d-flex justify-content-center'>
         <Col md={7}>
           <Form className='border border-3 p-5 rounded'>
