@@ -7,6 +7,7 @@ const NameDropdown = ({onNameDropdownChange}) => {
         const pName = e.target.value
         onNameDropdownChange(pName)
     }
+    
   return (
     <div>
         <Form.Group className="mb-3">
@@ -16,10 +17,11 @@ const NameDropdown = ({onNameDropdownChange}) => {
                 // value={pName}
                 onChange={handleNameDropdownChange} required className='rounded-pill' placeholder='Select Your Product'>
                 <option></option>
-                <option>Fan</option>
-                <option>Bulb</option>
-                <option>Mixy</option>
-                <option>Reciprocating Compressor</option>
+                <option>Reciprocating compressor(lubricated&oilfree)</option>
+                <option>Rotary screw(mobile&stationary)</option>
+                <option>Rotary Screw comprosser</option>
+                <option>Oil-free compressor</option>
+                <option>Railway break compressors/expression</option>
                 <option>Screw Compressor</option>
                 <option>Centrifugal Compressor</option>
               </Form.Select>

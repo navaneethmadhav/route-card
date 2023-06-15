@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 
 import './Home.css'
 import { Link, useNavigate } from 'react-router-dom';
@@ -57,8 +58,12 @@ const Home = () => {
   const [ptRemark, setPtRemark] = useState('')
   const [assembly, setAssembly] = useState('')
 
+  // for scanner
   const [isScannerOpen, setIsScannerOpen] = useState(false)
-  const [currentField, setCurrentField] = useState('')
+  const [currentField, setCurrentField] = useState(null)
+
+  // for modal
+  const [show, setShow] = useState(false);
 
 
   // for storing data from multiple input values to one state
@@ -104,121 +109,205 @@ const Home = () => {
 
   // ============  casing set no  =================
 
-  const handleQRScan1 = (scannedText) => {
+  const handleCasingQRScan1 = (scannedText) => {
     setCasing((casingSet) => ({
       ...casingSet,
       [currentField]: scannedText,
     }))
+    setCurrentField(null)
     setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handleButtonClick1 = (drgno) => {
     setCurrentField(drgno)
+    setShow(true)
     setIsScannerOpen(true)
+  }
+
+  const handleCasingQRScan2 = (scannedText) => {
+    setCasing((casingSet) => ({
+      ...casingSet,
+      [currentField]: scannedText,
+    }))
+    setCurrentField(null)
+    setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handleButtonClick2 = (srno) => {
     setCurrentField(srno)
+    setShow(true)
     setIsScannerOpen(true)
   }
 
   // =====================  main casing no  =================================
 
-  const handleQRScan2 = (scannedText) => {
+  const handleMainCasingQRScan1 = (scannedText) => {
     setMainCasing((mainCasing) => ({
       ...mainCasing,
       [currentField]: scannedText,
     }))
+    setCurrentField(null)
     setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handleMainCasingButtonClick1 = (drgno2) => {
     setCurrentField(drgno2)
+    setShow(true)
     setIsScannerOpen(true)
+  }
+
+  const handleMainCasingQRScan2 = (scannedText) => {
+    setMainCasing((mainCasing) => ({
+      ...mainCasing,
+      [currentField]: scannedText,
+    }))
+    setCurrentField(null)
+    setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handleMainCasingButtonClick2 = (srno2) => {
     setCurrentField(srno2)
+    setShow(true)
     setIsScannerOpen(true)
   }
 
   // ================  Delivery Casing no  ===============
 
-  const handleQRScan3 = (scannedText) => {
+  const handleDeliveryCasingQRScan1 = (scannedText) => {
     setDeliveryCasing((deliveryCasing) => ({
       ...deliveryCasing,
       [currentField]: scannedText,
     }))
+    setCurrentField(null)
     setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handleDeliveryCasingButtonClick1 = (drgno3) => {
     setCurrentField(drgno3)
+    setShow(true)
     setIsScannerOpen(true)
+  }
+
+  const handleDeliveryCasingQRScan2 = (scannedText) => {
+    setDeliveryCasing((deliveryCasing) => ({
+      ...deliveryCasing,
+      [currentField]: scannedText,
+    }))
+    setCurrentField(null)
+    setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handleDeliveryCasingButtonClick2 = (srno3) => {
     setCurrentField(srno3)
+    setShow(true)
     setIsScannerOpen(true)
   }
 
   // ================  Rotor Pair no  ===============
 
-  const handleQRScan4 = (scannedText) => {
+  const handleRotorPairQRScan1 = (scannedText) => {
     setRotorPair((rotorPair) => ({
       ...rotorPair,
       [currentField]: scannedText,
     }))
+    setCurrentField(null)
     setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handleRotorPairButtonClick1 = (drgno4) => {
     setCurrentField(drgno4)
+    setShow(true)
     setIsScannerOpen(true)
+  }
+
+  const handleRotorPairQRScan2 = (scannedText) => {
+    setRotorPair((rotorPair) => ({
+      ...rotorPair,
+      [currentField]: scannedText,
+    }))
+    setCurrentField(null)
+    setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handleRotorPairButtonClick2 = (srno4) => {
     setCurrentField(srno4)
+    setShow(true)
     setIsScannerOpen(true)
   }
 
   // ================  Gear no  ===============
 
-  const handleQRScan5 = (scannedText) => {
+  const handleGearQRScan1 = (scannedText) => {
     setGear((gear) => ({
       ...gear,
       [currentField]: scannedText,
     }))
+    setCurrentField(null)
     setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handleGearButtonClick1 = (drgno5) => {
     setCurrentField(drgno5)
+    setShow(true)
     setIsScannerOpen(true)
+  }
+
+  const handleGearQRScan2 = (scannedText) => {
+    setGear((gear) => ({
+      ...gear,
+      [currentField]: scannedText,
+    }))
+    setCurrentField(null)
+    setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handleGearButtonClick2 = (srno5) => {
     setCurrentField(srno5)
+    setShow(true)
     setIsScannerOpen(true)
   }
 
   // ================  Pinion no  ===============
 
-  const handleQRScan6 = (scannedText) => {
+  const handlePinionQRScan1 = (scannedText) => {
     setPinion((pinion) => ({
       ...pinion,
       [currentField]: scannedText,
     }))
+    setCurrentField(null)
     setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handlePinionButtonClick1 = (drgno6) => {
     setCurrentField(drgno6)
+    setShow(true)
     setIsScannerOpen(true)
+  }
+
+  const handlePinionQRScan2 = (scannedText) => {
+    setPinion((pinion) => ({
+      ...pinion,
+      [currentField]: scannedText,
+    }))
+    setCurrentField(null)
+    setIsScannerOpen(false)
+    setShow(false)
   }
 
   const handlePinionButtonClick2 = (srno6) => {
     setCurrentField(srno6)
+    setShow(true)
     setIsScannerOpen(true)
   }
 
@@ -324,6 +413,11 @@ const Home = () => {
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleButtonClick1('drgno')}><AiOutlineScan /></button>
 
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'drgno' && isScannerOpen && (<div> <QRScanner onScan={handleCasingQRScan1} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
 
                 </Col>
                 <Col className='d-flex justify-content-start'>
@@ -333,7 +427,12 @@ const Home = () => {
                   />
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleButtonClick2('srno')}><AiOutlineScan /></button>
-                  {isScannerOpen && <QRScanner onScan={handleQRScan1} />}
+
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'srno' && isScannerOpen && (<div> <QRScanner onScan={handleCasingQRScan2} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
 
                 </Col>
               </Row>
@@ -350,6 +449,11 @@ const Home = () => {
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleMainCasingButtonClick1('drgno2')}><AiOutlineScan /></button>
 
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'drgno2' && isScannerOpen && (<div> <QRScanner onScan={handleMainCasingQRScan1} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
 
                 </Col>
                 <Col className='d-flex justify-content-start'>
@@ -359,7 +463,12 @@ const Home = () => {
                   />
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleMainCasingButtonClick2('srno2')}><AiOutlineScan /></button>
-                  {isScannerOpen && <QRScanner onScan={handleQRScan2} />}
+
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'srno2' && isScannerOpen && (<div> <QRScanner onScan={handleMainCasingQRScan2} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
 
                 </Col>
               </Row>
@@ -376,6 +485,12 @@ const Home = () => {
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleDeliveryCasingButtonClick1('drgno3')}><AiOutlineScan /></button>
 
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'drgno3' && isScannerOpen && (<div> <QRScanner onScan={handleDeliveryCasingQRScan1} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
+
                 </Col>
                 <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter SR No."
@@ -384,7 +499,12 @@ const Home = () => {
                   />
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleDeliveryCasingButtonClick2('srno3')}><AiOutlineScan /></button>
-                  {isScannerOpen && <QRScanner onScan={handleQRScan3} />}
+
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'srno3' && isScannerOpen && (<div> <QRScanner onScan={handleDeliveryCasingQRScan2} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
 
                 </Col>
               </Row>
@@ -401,6 +521,12 @@ const Home = () => {
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleRotorPairButtonClick1('drgno4')}><AiOutlineScan /></button>
 
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'drgno4' && isScannerOpen && (<div> <QRScanner onScan={handleRotorPairQRScan1} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
+
                 </Col>
                 <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter SR No."
@@ -409,7 +535,12 @@ const Home = () => {
                   />
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleRotorPairButtonClick2('srno4')}><AiOutlineScan /></button>
-                  {isScannerOpen && <QRScanner onScan={handleQRScan4} />}
+
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'srno4' && isScannerOpen && (<div> <QRScanner onScan={handleRotorPairQRScan2} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
 
                 </Col>
               </Row>
@@ -426,6 +557,12 @@ const Home = () => {
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleGearButtonClick1('drgno5')}><AiOutlineScan /></button>
 
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'drgno5' && isScannerOpen && (<div> <QRScanner onScan={handleGearQRScan1} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
+
                 </Col>
                 <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter SR No."
@@ -434,7 +571,12 @@ const Home = () => {
                   />
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleGearButtonClick2('srno5')}><AiOutlineScan /></button>
-                  {isScannerOpen && <QRScanner onScan={handleQRScan5} />}
+
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'srno5' && isScannerOpen && (<div> <QRScanner onScan={handleGearQRScan2} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
 
                 </Col>
               </Row>
@@ -450,6 +592,13 @@ const Home = () => {
                   />
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handlePinionButtonClick1('drgno6')}><AiOutlineScan /></button>
+
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'drgno6' && isScannerOpen && (<div> <QRScanner onScan={handlePinionQRScan1} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
+
                 </Col>
                 <Col className='d-flex justify-content-start'>
                   <Form.Control type="text" placeholder="Enter SR No."
@@ -458,7 +607,13 @@ const Home = () => {
                   />
 
                   <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handlePinionButtonClick2('srno6')}><AiOutlineScan /></button>
-                  {isScannerOpen && <QRScanner onScan={handleQRScan6} />}
+
+                  <Modal show={show} size="lg">
+                    <Modal.Body className='m-3'>
+                      {currentField === 'srno6' && isScannerOpen && (<div> <QRScanner onScan={handlePinionQRScan2} /> </div>)}
+                    </Modal.Body>
+                  </Modal>
+
                 </Col>
               </Row>
             </Form.Group>

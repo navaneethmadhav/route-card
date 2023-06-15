@@ -13,7 +13,7 @@ const QRScanner = ({onScan}) => {
     }
 
   return (
-    <div>
+    <div className='w-25 h-25'>
         <QrScanner delay={300} oError={console.error} onScan={handleScan}/>
         <p>{scannedText}</p>
     </div>

@@ -3,10 +3,13 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 
 import './Edit.css'
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import QRScanner from './QRScanner';
+import { AiOutlineScan } from "react-icons/ai";
 
 const Edit = () => {
 
@@ -50,6 +53,13 @@ const Edit = () => {
     const [ptBy, setPtBy] = useState('')
     const [ptRemark, setPtRemark] = useState('')
     const [assembly, setAssembly] = useState('')
+
+    // for scanner
+    const [isScannerOpen, setIsScannerOpen] = useState(false)
+    const [currentField, setCurrentField] = useState(null)
+
+    // for modal
+    const [show, setShow] = useState(false);
 
     const params = useParams()
     // console.log(params);
@@ -108,9 +118,278 @@ const Edit = () => {
         setPinion({ ...pinion, [e.target.name]: e.target.value })
     }
 
-    const handleChangeDt = (e) =>{
+    const handleChangeDt = (e) => {
         setPtDate({ ...ptDate, [e.target.name]: e.target.value })
     }
+
+    // scanning
+
+    // ============  casing set no  =================
+
+    const handleCasingQRScan1 = (scannedText) => {
+        setCasing((casingSet) => ({
+            ...casingSet,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handleButtonClick1 = (drgno) => {
+        const inputValue = casingSet[drgno]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(drgno)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+    const handleCasingQRScan2 = (scannedText) => {
+        setCasing((casingSet) => ({
+            ...casingSet,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handleButtonClick2 = (srno) => {
+        const inputValue = casingSet[srno]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(srno)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+    // ============  main casing no  =================
+
+    const handleMainCasingQRScan1 = (scannedText) => {
+        setMainCasing((mainCasing) => ({
+            ...mainCasing,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handleMainCasingButtonClick1 = (drgno2) => {
+        const inputValue = mainCasing[drgno2]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(drgno2)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+    const handleMainCasingQRScan2 = (scannedText) => {
+        setMainCasing((mainCasing) => ({
+            ...mainCasing,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handleMainCasingButtonClick2 = (srno2) => {
+        const inputValue = mainCasing[srno2]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(srno2)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+    // ================  Delivery Casing no  ===============
+
+    const handleDeliveryCasingQRScan1 = (scannedText) => {
+        setDeliveryCasing((deliveryCasing) => ({
+            ...deliveryCasing,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handleDeliveryCasingButtonClick1 = (drgno3) => {
+        const inputValue = deliveryCasing[drgno3]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(drgno3)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+    const handleDeliveryCasingQRScan2 = (scannedText) => {
+        setDeliveryCasing((deliveryCasing) => ({
+            ...deliveryCasing,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handleDeliveryCasingButtonClick2 = (srno3) => {
+        const inputValue = deliveryCasing[srno3]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(srno3)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+    // ================  Rotor Pair no  ===============
+
+    const handleRotorPairQRScan1 = (scannedText) => {
+        setRotorPair((rotorPair) => ({
+            ...rotorPair,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handleRotorPairButtonClick1 = (drgno4) => {
+        const inputValue = rotorPair[drgno4]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(drgno4)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+    const handleRotorPairQRScan2 = (scannedText) => {
+        setRotorPair((rotorPair) => ({
+            ...rotorPair,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handleRotorPairButtonClick2 = (srno4) => {
+        const inputValue = rotorPair[srno4]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(srno4)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+    // ================  Gear no  ===============
+
+    const handleGearQRScan1 = (scannedText) => {
+        setGear((gear) => ({
+            ...gear,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handleGearButtonClick1 = (drgno5) => {
+        const inputValue = gear[drgno5]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(drgno5)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+    const handleGearQRScan2 = (scannedText) => {
+        setGear((gear) => ({
+            ...gear,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handleGearButtonClick2 = (srno5) => {
+        const inputValue = gear[srno5]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(srno5)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+    // ================  Pinion no  ===============
+
+    const handlePinionQRScan1 = (scannedText) => {
+        setPinion((pinion) => ({
+            ...pinion,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handlePinionButtonClick1 = (drgno6) => {
+        const inputValue = pinion[drgno6]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(drgno6)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+    const handlePinionQRScan2 = (scannedText) => {
+        setPinion((pinion) => ({
+            ...pinion,
+            [currentField]: scannedText,
+        }))
+        setCurrentField(null)
+        setIsScannerOpen(false)
+        setShow(false)
+    }
+
+    const handlePinionButtonClick2 = (srno6) => {
+        const inputValue = pinion[srno6]
+        if (inputValue) {
+            alert('please clear the content before scanning')
+        } else {
+            setCurrentField(srno6)
+            setShow(true)
+            setIsScannerOpen(true)
+        }
+    }
+
+
+
 
     const handleUpdate = async (e) => {
         e.preventDefault()
@@ -154,7 +433,7 @@ const Edit = () => {
 
     useEffect(() => {
         fetchProduct()
-    },[])
+    }, [])
 
     return (
         <div>
@@ -169,11 +448,11 @@ const Edit = () => {
                                 value={pName}
                                 onChange={(e) => setName(e.target.value)} required className='rounded-pill' placeholder='Select Your Product'>
                                 <option></option>
-                                <option>Fan</option>
-                                <option>Bulb</option>
-                                <option>Mixy</option>
-                                <option>AC</option>
-                                <option>Reciprocating Compressor</option>
+                                <option>Reciprocating compressor(lubricated&oilfree)</option>
+                                <option>Rotary screw(mobile&stationary)</option>
+                                <option>Rotary Screw comprosser</option>
+                                <option>Oil-free compressor</option>
+                                <option>Railway break compressors/expression</option>
                                 <option>Screw Compressor</option>
                                 <option>Centrifugal Compressor</option>
                             </Form.Select>
@@ -224,17 +503,34 @@ const Edit = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Casing Set No.</Form.Label>
                             <Row>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter Drg No."
                                         value={casingSet.drgno} name='drgno' id='drgno'
-                                        onChange={handleChange1} required className='pn rounded-pill w-100'
+                                        onChange={handleChange1} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleButtonClick1('drgno')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'drgno' && isScannerOpen && (<div> <QRScanner onScan={handleCasingQRScan1} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
+
                                 </Col>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter SR No."
                                         value={casingSet.srno} name='srno' id='srno'
-                                        onChange={handleChange1} required className='pn rounded-pill w-100'
+                                        onChange={handleChange1} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleButtonClick2('srno')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'srno' && isScannerOpen && (<div> <QRScanner onScan={handleCasingQRScan2} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
                                 </Col>
                             </Row>
                         </Form.Group>
@@ -242,17 +538,35 @@ const Edit = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Main Casing No.</Form.Label>
                             <Row>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter DRG NO."
                                         value={mainCasing.drgno2} name='drgno2' id='drgno2'
-                                        onChange={handleChange2} required className='pn rounded-pill w-100'
+                                        onChange={handleChange2} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleMainCasingButtonClick1('drgno2')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'drgno2' && isScannerOpen && (<div> <QRScanner onScan={handleMainCasingQRScan1} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
+
                                 </Col>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter SR No."
                                         value={mainCasing.srno2} name='srno2' id='srno2'
-                                        onChange={handleChange2} required className='pn rounded-pill w-100'
+                                        onChange={handleChange2} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleMainCasingButtonClick2('srno2')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'srno2' && isScannerOpen && (<div> <QRScanner onScan={handleMainCasingQRScan2} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
+
                                 </Col>
                             </Row>
                         </Form.Group>
@@ -260,17 +574,34 @@ const Edit = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Delivery Casing No.</Form.Label>
                             <Row>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter DRG NO."
                                         value={deliveryCasing.drgno3} name='drgno3' id='drgno3'
-                                        onChange={handleChange3} required className='pn rounded-pill w-100'
+                                        onChange={handleChange3} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleDeliveryCasingButtonClick1('drgno3')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'drgno3' && isScannerOpen && (<div> <QRScanner onScan={handleDeliveryCasingQRScan1} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
+
                                 </Col>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter SR No."
                                         value={deliveryCasing.srno3} name='srno3' id='srno3'
-                                        onChange={handleChange3} required className='pn rounded-pill w-100'
+                                        onChange={handleChange3} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleDeliveryCasingButtonClick2('srno3')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'srno3' && isScannerOpen && (<div> <QRScanner onScan={handleDeliveryCasingQRScan2} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
                                 </Col>
                             </Row>
                         </Form.Group>
@@ -278,17 +609,35 @@ const Edit = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Rotor Pair No.</Form.Label>
                             <Row>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter DRG NO."
                                         value={rotorPair.drgno4} name='drgno4' id='drgno4'
-                                        onChange={handleChange4} required className='pn rounded-pill w-100'
+                                        onChange={handleChange4} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleRotorPairButtonClick1('drgno4')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'drgno4' && isScannerOpen && (<div> <QRScanner onScan={handleRotorPairQRScan1} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
+
                                 </Col>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter SR No."
                                         value={rotorPair.srno4} name='srno4' id='srno4'
-                                        onChange={handleChange4} required className='pn rounded-pill w-100'
+                                        onChange={handleChange4} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleRotorPairButtonClick2('srno4')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'srno4' && isScannerOpen && (<div> <QRScanner onScan={handleRotorPairQRScan2} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
+
                                 </Col>
                             </Row>
                         </Form.Group>
@@ -296,17 +645,34 @@ const Edit = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Gear No.</Form.Label>
                             <Row>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter DRG NO."
                                         value={gear.drgno5} name='drgno5' id='drgno5'
-                                        onChange={handleChange5} required className='pn rounded-pill w-100'
+                                        onChange={handleChange5} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleGearButtonClick1('drgno5')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'drgno5' && isScannerOpen && (<div> <QRScanner onScan={handleGearQRScan1} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
+
                                 </Col>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter SR No."
                                         value={gear.srno5} name='srno5' id='srno5'
-                                        onChange={handleChange5} required className='pn rounded-pill w-100'
+                                        onChange={handleChange5} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handleGearButtonClick2('srno5')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'srno5' && isScannerOpen && (<div> <QRScanner onScan={handleGearQRScan2} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
                                 </Col>
                             </Row>
                         </Form.Group>
@@ -314,17 +680,35 @@ const Edit = () => {
                         <Form.Group className="mb-3">
                             <Form.Label>Pinion No.</Form.Label>
                             <Row>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter DRG NO."
                                         value={pinion.drgno6} name='drgno6' id='drgno6'
-                                        onChange={handleChange6} required className='pn rounded-pill w-100'
+                                        onChange={handleChange6} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handlePinionButtonClick1('drgno6')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'drgno6' && isScannerOpen && (<div> <QRScanner onScan={handlePinionQRScan1} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
+
                                 </Col>
-                                <Col>
+                                <Col className='d-flex justify-content-start'>
                                     <Form.Control type="text" placeholder="Enter SR No."
                                         value={pinion.srno6} name='srno6' id='srno6'
-                                        onChange={handleChange6} required className='pn rounded-pill w-100'
+                                        onChange={handleChange6} required className='pn rounded-pill w-75 me-5'
                                     />
+
+                                    <button className='bg-dark border-3 border-primary p-2 rounded-pill' onClick={() => handlePinionButtonClick2('srno6')}><AiOutlineScan /></button>
+
+                                    <Modal show={show} size="lg">
+                                        <Modal.Body className='m-3'>
+                                            {currentField === 'srno6' && isScannerOpen && (<div> <QRScanner onScan={handlePinionQRScan2} /> </div>)}
+                                        </Modal.Body>
+                                    </Modal>
+
                                 </Col>
                             </Row>
                         </Form.Group>
